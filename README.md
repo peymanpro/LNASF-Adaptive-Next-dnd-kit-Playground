@@ -1,63 +1,74 @@
-# 🎯 next-dnd-kit-playground
-A complete and professional project showcasing Drag and Drop capabilities using @dnd-kit/core in Next.js 15.
+# Next.js dnd-kit Playground — LNASF Adaptive Workflow Demo
 
- Features
-Sortable List – Drag and reorder items in a vertical list
+An interactive playground for drag-and-drop patterns using Next.js, React, TypeScript, and dnd-kit. It combines a sortable list, a cross-column Kanban board, image previews, browser-local persistence, and an inspectable LNASF workflow-learning layer.
 
-Kanban Board – Move tasks between columns + reorder within each column
+## Features
 
- File Upload – Drag-and-drop zone for image uploads with validation
+- Reorder a list with pointer and keyboard sensors.
+- Move Kanban tasks between columns and reorder them within a column.
+- Preview selected images locally with file-type and size validation.
+- Persist the list and board in browser local storage.
+- Observe successful user operations and learn event transitions during the current page session.
+- Show optional, advisory next-step suggestions only when a transition has at least three samples and at least 65% empirical confidence.
+- Clear learning observations or reset task data at any time.
 
-Touch Support – Fully responsive and compatible with mobile and tablets
+## LNASF integration
 
-Auto-Save – All data is persisted to localStorage
+The demonstration follows: **Observe → Learn → Predict → Decide → Adapt → Measure**.
 
-TypeScript – Full type definitions for better development
+- **Observe:** record successful list reorders, task reorders, and cross-column moves.
+- **Learn:** count adjacent event transitions over a bounded window of at most 100 observations.
+- **Predict:** estimate the next event from empirical transition frequencies.
+- **Decide:** apply explicit support and confidence thresholds; hide weak predictions.
+- **Adapt:** present a suggestion for the user to consider. The model never moves or reorders items itself.
+- **Measure:** expose observation counts, transition counts, support, and confidence in the UI.
 
-Smooth Animations – Great UX with DragOverlay
+### Boundaries and limitations
 
-Technologies
-Next.js 15 (App Router)
+- Learning observations exist only in memory for the current page session; they are not uploaded or persisted.
+- Task content is not used as a learning feature. Only event categories are recorded.
+- Suggestions are descriptive heuristics, not evidence of improved productivity or a validated predictive model.
+- This is a client-side demonstration, not a production workflow engine.
+- The image area creates local object URLs; it does not upload files to a server.
 
-React 19
+## Stack
 
-@dnd-kit/core v6
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities`
+- Tailwind CSS 4
 
-@dnd-kit/sortable
+## Run locally
 
-TypeScript
-
-TailwindCSS
-
-Installation & Running
-bash
-git clone https://github.com/YOUR_USERNAME/next-dnd-kit-playground.git
+```bash
+git clone https://github.com/peymanpro/next-dnd-kit-playground.git
 cd next-dnd-kit-playground
-npm install
+npm ci
 npm run dev
+```
 
- Project Structure
-text
-next-dnd-kit-playground/
-├── app/                 # Main page and layout
-├── components/          # React components
-│   ├── ui/             # Base UI components
-│   ├── SortableList.tsx
-│   ├── KanbanBoard.tsx
-│   └── FileUploadZone.tsx
-├── hooks/              # Custom hooks
-├── types/              # TypeScript types
-├── constants/          # Initial data
-└── utils/              # Helper functions
+Open http://localhost:3000.
 
-Key @dnd-kit Concepts
-DndContext – The main provider for drag-and-drop functionality
+## Quality checks
 
-useSortable – For sortable items
+```bash
+npm run typecheck
+npm run lint
+npm run build
+npm audit --audit-level=high
+```
 
-useDroppable – For drop zones
+GitHub Actions runs these checks on pushes and pull requests to `main`.
 
-SortableContext – Manages sortable items
+## Key files
 
-DragOverlay – Displays a preview while dragging
+- `lib/lnasf/workflow-model.ts` — bounded transition model and deterministic recommendation policy.
+- `components/LnasfWorkflowPanel.tsx` — learning metrics and optional suggestions.
+- `components/KanbanBoard.tsx` — deterministic drop handling and event observation.
+- `components/SortableList.tsx` — accessible list sorting and event observation.
+- `hooks/useLocalStorage.ts` — browser persistence with safe fallback behavior.
 
+## License
+
+No license is declared yet. Add a license file before presenting this repository as open source for reuse.
