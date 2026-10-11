@@ -125,7 +125,8 @@ export function KanbanBoard({ columns, setColumns, onWorkflowEvent }: KanbanBoar
         <DragOverlay dropAnimation={dropAnimation}>
           {activeTask ? (
             <div className="rotate-3 rounded-lg border-2 border-blue-400 bg-white p-3 shadow-lg">
-              <KanbanTask task={activeTask} columnId={activeColumnId ?? ""} />
+              <div className="text-sm font-medium text-gray-800">{activeTask.title}</div>
+              {activeTask.description && <div className="mt-1 text-xs text-gray-500">{activeTask.description}</div>}
             </div>
           ) : null}
         </DragOverlay>
