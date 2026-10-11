@@ -12,7 +12,7 @@ import {
   DragOverlay,
   defaultDropAnimationSideEffects,
 } from "@dnd-kit/core";
-import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
+import { arrayMove } from "@dnd-kit/sortable";
 import { useState } from "react";
 import { KanbanColumn } from "./KanbanColumn";
 import type { Task, Column as ColumnType } from "@/types";
@@ -109,13 +109,7 @@ export function KanbanBoard({ columns, setColumns, onWorkflowEvent }: KanbanBoar
       >
         <div className="flex gap-4 pb-4">
           {columns.map((column) => (
-            <SortableContext
-              key={column.id}
-              items={column.tasks.map((task) => task.id)}
-              strategy={verticalListSortingStrategy}
-            >
-              <KanbanColumn column={column} tasks={column.tasks} />
-            </SortableContext>
+            <KanbanColumn key={column.id} column={column} tasks={column.tasks} />
           ))}
         </div>
         <DragOverlay dropAnimation={dropAnimation}>
