@@ -1,6 +1,6 @@
 # Next.js dnd-kit Playground — LNASF Adaptive Workflow Demo
 
-An interactive playground for drag-and-drop patterns using Next.js, React, TypeScript, and dnd-kit. It combines a sortable list, a cross-column Kanban board, image previews, browser-local persistence, and an inspectable LNASF workflow-learning layer.
+An interactive playground for drag-and-drop patterns using Next.js, React, TypeScript, and dnd-kit. It combines a sortable list, a cross-column Kanban board, image previews, browser-local persistence, and an inspectable LNASF workflow-learning layer. This is an exploratory example of selected principles from the [Learning-Native Adaptive Software Framework (LNASF)](https://github.com/peymanpro/Learning-Native-Adaptive-Software-Framewor-Or-LNASF), not a complete implementation of the framework.
 
 ## Features
 
@@ -42,8 +42,8 @@ The demonstration follows: **Observe → Learn → Predict → Decide → Adapt 
 ## Run locally
 
 ```bash
-git clone https://github.com/peymanpro/next-dnd-kit-playground.git
-cd next-dnd-kit-playground
+git clone https://github.com/peymanpro/LNASF-Adaptive-Next-dnd-kit-Playground.git
+cd LNASF-Adaptive-Next-dnd-kit-Playground
 npm ci
 npm run dev
 ```
