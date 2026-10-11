@@ -1,41 +1,11 @@
-/* app/globals.css */
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* { -webkit-tap-highlight-color: transparent; }
 
-/* Smooth scrolling for drag operations */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-/* Custom scrollbar for kanban columns */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Prevent text selection during drag */
-.dragging {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Smooth transitions */
-.transition-smooth {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.dragging { user-select: none; -webkit-user-select: none; }
+.transition-smooth { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
