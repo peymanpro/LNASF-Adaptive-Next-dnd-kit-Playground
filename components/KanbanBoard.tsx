@@ -18,7 +18,6 @@ import { KanbanColumn } from "./KanbanColumn";
 import type { Task, Column as ColumnType } from "@/types";
 import type { WorkflowEvent } from "@/lib/lnasf/workflow-model";
 import { Card } from "./ui/Card";
-import { KanbanTask } from "./KanbanTask";
 
 interface KanbanBoardProps {
   columns: ColumnType[];
@@ -28,7 +27,6 @@ interface KanbanBoardProps {
 
 export function KanbanBoard({ columns, setColumns, onWorkflowEvent }: KanbanBoardProps) {
   const [activeTask, setActiveTask] = useState<Task | null>(null);
-  const [activeColumnId, setActiveColumnId] = useState<string | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -38,12 +36,10 @@ export function KanbanBoard({ columns, setColumns, onWorkflowEvent }: KanbanBoar
   const handleDragStart = (event: DragStartEvent) => {
     const data = event.active.data.current as { task?: Task; columnId?: string } | undefined;
     setActiveTask(data?.task ?? null);
-    setActiveColumnId(data?.columnId ?? null);
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
     setActiveTask(null);
-    setActiveColumnId(null);
 
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -109,7 +105,7 @@ export function KanbanBoard({ columns, setColumns, onWorkflowEvent }: KanbanBoar
         collisionDetection={closestCenter}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
-        onDragCancel={() => { setActiveTask(null); setActiveColumnId(null); }}
+        onDragCancel={() => setActiveTask(null)}
       >
         <div className="flex gap-4 pb-4">
           {columns.map((column) => (
